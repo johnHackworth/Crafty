@@ -51,12 +51,11 @@ Crafty.c("Particles", {
      * fastMode: false,
      * gravity: { x: 0, y: 0.1 },
      * // sensible values are 0-3
-     * jitter: 0
-     * // X Offset for the origin of the particles
-     * originOffsetX: 0
-     * // Y Offset for the origin of the particles
-     * originOffsetY: 0
-
+     * jitter: 0,
+     * // Offset for the origin of the particles
+     * originOffset: {x: 0, y: 0}
+     * };
+     *
      * Crafty.e("2D,Canvas,Particles").particles(options);
      * ~~~
      */
@@ -163,6 +162,8 @@ Crafty.c("Particles", {
             },
             // sensible values are 0-3
             jitter: 0,
+            // offset of particles from origin
+            originOffset: {x: 0, y: 0},
 
             //Don't modify the following
             particles: [],
@@ -187,10 +188,6 @@ Crafty.c("Particles", {
 
             this.emissionRate = this.maxParticles / this.lifeSpan;
             this.positionRandom = this.vectorHelpers.create(this.spread, this.spread);
-            this.originOffset = {
-                x: options.originOffsetX || 0,
-                y: options.originOffsetY || 0
-            };
         },
 
         addParticle: function () {
